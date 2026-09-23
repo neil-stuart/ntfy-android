@@ -1,0 +1,7 @@
+Home Notifications bundles two typefaces, both under the SIL Open Font License 1.1 (see OFL.txt):
+
+- Inter (res/font/inter_variable.ttf), Copyright 2020 The Inter Project Authors (https://github.com/rsms/inter)
+- Geist Mono (res/font/geist_mono_variable.ttf), Copyright 2024 The Geist Project Authors (https://github.com/vercel/geist-font)
+
+Colour themes Ocean, Pepper, Cherry and Tokyo Night, and the frosted-glass styling, are adapted from
+Nocean (https://github.com/AurielSolaris/Nocean), MIT License, Copyright (c) 2026 Auriel.

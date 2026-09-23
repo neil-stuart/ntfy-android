@@ -54,9 +54,49 @@
         <item name="actionModeStyle">@style/ActionMode</item>
         <item name="actionModeCloseButtonStyle">@style/ActionModeCloseButtonStyle</item>
         <item name="actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+
+        <!-- Hawksfield frosted glass: aurora backdrop, translucent panes, blurred dialogs -->
+        <item name="android:windowBackground">@drawable/glass_backdrop</item>
+        <item name="materialCardViewStyle">@style/GlassCard</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Hawksfield.GlassDialog</item>
+        <item name="popupMenuBackground">@drawable/glass_popup</item>
+        <item name="android:popupBackground">@drawable/glass_popup</item>
+
+        <!-- Glass roles default to the Hawksfield palette (used as-is when dynamic colours are on) -->
+        <item name="glassBase">@color/pal_hawksfield_glassBase</item>
+        <item name="glassBlob1">@color/pal_hawksfield_glassBlob1</item>
+        <item name="glassBlob2">@color/pal_hawksfield_glassBlob2</item>
+        <item name="glassBlob3">@color/pal_hawksfield_glassBlob3</item>
+        <item name="glassBar">@color/pal_hawksfield_glassBar</item>
+        <item name="glassPane">@color/pal_hawksfield_glassPane</item>
+        <item name="glassPaneSelected">@color/pal_hawksfield_glassPaneSelected</item>
+        <item name="glassDialog">@color/pal_hawksfield_glassDialog</item>
+        <item name="glassBorderTop">@color/pal_hawksfield_glassBorderTop</item>
+        <item name="glassBorderBottom">@color/pal_hawksfield_glassBorderBottom</item>
+
+        <!-- Nocean-style type: Inter for UI, Geist Mono for metadata -->
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="fontFamily">@font/inter</item>
+        <item name="toolbarStyle">@style/Home.Toolbar</item>
+        <item name="actionButtonStyle">@style/Home.GlassActionButton</item>
+        <item name="toolbarNavigationButtonStyle">@style/Home.GlassNavigationButton</item>
+        <item name="preferenceCategoryTitleTextAppearance">@style/TextAppearance.Home.Mono.Caps</item>
+        <item name="preferenceCategoryTitleTextColor">?attr/colorOnSurfaceVariant</item>
+
+        <!-- Topic list <-> Settings: content crossfades under the shared glass footer -->
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/glass_page_fade</item>
+        <item name="android:windowExitTransition">@transition/glass_page_fade</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/glass_shared_footer</item>
+        <item name="android:windowSharedElementExitTransition">@transition/glass_shared_footer</item>
+        <item name="android:windowAllowEnterTransitionOverlap">true</item>
+        <item name="android:windowAllowReturnTransitionOverlap">true</item>
     </style>
 
-    <style name="OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow" />
+    <style name="OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:background">@drawable/glass_circle</item>
+        <item name="android:minWidth">48dp</item>
+    </style>
 
     <!-- SearchView style without the hint icon -->
     <style name="AppSearchViewStyle" parent="Widget.AppCompat.SearchView.ActionBar">
@@ -72,7 +112,7 @@
         <item name="tint">?attr/colorOnPrimary</item>
     </style>
 
-    <style name="CardView" parent="@style/Widget.Material3.CardView.Elevated" />
+    <style name="CardView" parent="@style/GlassCard" />
 
     <style name="CardViewBackground" />
 
@@ -102,7 +142,7 @@
     </style>
 
     <!-- Banner style with reduced corner radius -->
-    <style name="BannerCardStyle" parent="Widget.Material3.CardView.Elevated">
+    <style name="BannerCardStyle" parent="GlassCard">
         <item name="shapeAppearanceOverlay">@style/BannerShapeAppearance</item>
     </style>
 
@@ -112,11 +152,12 @@
     </style>
 
     <!-- Full-screen dialog style for Material 3 compliance -->
-    <style name="Theme.App.FullScreenDialog" parent="AppTheme">
+    <!-- No parent: layered on the opening activity's theme, so the colour theme carries over -->
+    <style name="Theme.App.FullScreenDialog" parent="">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">false</item>
-        <item name="android:statusBarColor">?attr/colorSurface</item>
-        <item name="android:windowBackground">?attr/colorSurface</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@drawable/glass_backdrop</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowAnimationStyle">@style/Animation.App.FullScreenDialog</item>
     </style>

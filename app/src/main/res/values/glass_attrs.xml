@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Frosted-glass colour roles. Every colour theme (values/themes_palettes.xml) sets these. -->
+<resources>
+    <attr name="glassBase" format="color" />         <!-- ground under the aurora -->
+    <attr name="glassBlob1" format="color" />        <!-- aurora colour fields -->
+    <attr name="glassBlob2" format="color" />
+    <attr name="glassBlob3" format="color" />
+    <attr name="glassBar" format="color" />          <!-- app bar, footer, message bar -->
+    <attr name="glassPane" format="color" />         <!-- cards and list rows -->
+    <attr name="glassPaneSelected" format="color" />
+    <attr name="glassDialog" format="color" />       <!-- dialogs and popups -->
+    <attr name="glassBorderTop" format="color" />    <!-- hairline edge, fades top to bottom -->
+    <attr name="glassBorderBottom" format="color" />
+</resources>

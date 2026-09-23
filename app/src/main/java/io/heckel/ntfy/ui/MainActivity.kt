@@ -1,5 +1,7 @@
 package io.heckel.ntfy.ui
 
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityOptionsCompat
 import android.Manifest
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -25,7 +27,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.view.ActionMode
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -46,9 +47,10 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.heckel.ntfy.BuildConfig
 import io.heckel.ntfy.R
+import io.heckel.ntfy.ui.theme.GlassFooter
+import io.heckel.ntfy.ui.theme.ThemeManager
 import io.heckel.ntfy.app.Application
 import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.db.Subscription
@@ -99,7 +101,13 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
     private lateinit var mainList: RecyclerView
     private lateinit var mainListContainer: SwipeRefreshLayout
     private lateinit var adapter: MainAdapter
-    private lateinit var fab: FloatingActionButton
+    private lateinit var fab: View // The glass footer; faded out during action mode like the old FAB
+    private lateinit var glassFooter: GlassFooter
+
+    // Settings' footer "+" comes back here to open the subscribe dialog
+    private val settingsLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == SettingsActivity.RESULT_SUBSCRIBE) onSubscribeButtonClick()
+    }
 
     // Other stuff
     private var networkCallback: ConnectivityManager.NetworkCallback? = null
@@ -168,19 +176,12 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars =
             Colors.shouldUseLightStatusBar(dynamicColors, darkMode)
 
-        // Floating action button ("+")
-        fab = findViewById(R.id.fab)
-        fab.setOnClickListener {
-            onSubscribeButtonClick()
-        }
-        
-        // Add bottom padding to FAB to account for navigation bar
-        ViewCompat.setOnApplyWindowInsetsListener(fab) { view, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val layoutParams = view.layoutParams as androidx.constraintlayout.widget.ConstraintLayout.LayoutParams
-            layoutParams.bottomMargin = systemBars.bottom
-            view.layoutParams = layoutParams
-            insets
+        // Glass footer: Notifications · + · Settings
+        fab = findViewById(R.id.glass_footer)
+        glassFooter = GlassFooter.bind(this, fab, GlassFooter.Tab.NOTIFICATIONS).apply {
+            setOnTabClick(GlassFooter.Tab.NOTIFICATIONS) { mainList.smoothScrollToPosition(0) }
+            setOnTabClick(GlassFooter.Tab.SETTINGS) { openSettings() }
+            setOnAddClick { onSubscribeButtonClick() }
         }
 
         // Swipe to refresh
@@ -207,9 +208,10 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
         
         // Apply window insets to ensure content is not covered by navigation bar
         mainList.clipToPadding = false
+        val footerClearance = resources.getDimensionPixelSize(R.dimen.glass_footer_clearance)
         ViewCompat.setOnApplyWindowInsetsListener(mainList) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.updatePadding(bottom = systemBars.bottom)
+            v.updatePadding(bottom = systemBars.bottom + footerClearance) // Scroll clear of the footer
             insets
         }
 
@@ -217,6 +219,7 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
             it?.let { subscriptions ->
                 // Update main list
                 adapter.submitList(subscriptions as MutableList<Subscription>)
+                supportActionBar?.subtitle = resources.getQuantityString(R.plurals.main_subtitle_topics, it.size, it.size)
                 if (it.isEmpty()) {
                     mainListContainer.visibility = View.GONE
                     noEntries.visibility = View.VISIBLE
@@ -374,7 +377,7 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
         messenger.subscribe(ApiService.CONTROL_TOPIC)
 
         // Darrkkkk mode
-        AppCompatDelegate.setDefaultNightMode(repository.getDarkMode())
+        ThemeManager.applyNightMode(this) // User's light/dark choice, unless the colour theme is single-mode
 
         // Background things
         schedulePeriodicPollWorker()
@@ -629,7 +632,7 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
                 true
             }
             R.id.main_menu_settings -> {
-                startActivity(Intent(this, SettingsActivity::class.java))
+                openSettings()
                 true
             }
             R.id.main_menu_report_bug -> {
@@ -691,6 +694,12 @@ class MainActivity : AppCompatActivity(), AddFragment.SubscribeListener, Notific
                 }
             }
         }
+    }
+
+    private fun openSettings() {
+        // The footer is shared, so it stays in place while the page crossfades to Settings
+        val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, fab, GlassFooter.TRANSITION_NAME)
+        settingsLauncher.launch(Intent(this, SettingsActivity::class.java), options)
     }
 
     private fun onSubscribeButtonClick() {

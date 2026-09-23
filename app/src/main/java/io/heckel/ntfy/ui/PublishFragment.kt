@@ -33,6 +33,7 @@ import okhttp3.RequestBody
 import okio.BufferedSink
 import okio.source
 import io.heckel.ntfy.R
+import io.heckel.ntfy.ui.theme.AuroraDrawable
 import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.msg.ApiService
 import io.heckel.ntfy.util.Log
@@ -274,6 +275,7 @@ class PublishFragment : DialogFragment() {
 
         // Build dialog
         val dialog = Dialog(requireContext(), R.style.Theme_App_FullScreenDialog)
+        dialog.window?.setBackgroundDrawable(AuroraDrawable(dialog.context)) // Same glass backdrop as the app
         dialog.setContentView(view)
 
         // Initial validation

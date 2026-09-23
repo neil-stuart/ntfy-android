@@ -6,7 +6,12 @@
                                                    android:foreground="?android:attr/selectableItemBackground"
                                                    android:orientation="horizontal" android:clickable="true"
                                                    android:focusable="true" android:paddingEnd="18dp"
-                                                   android:paddingStart="18dp">
+                                                   android:paddingStart="18dp"
+                                                   android:layout_marginStart="12dp"
+                                                   android:layout_marginEnd="12dp"
+                                                   android:layout_marginTop="4dp"
+                                                   android:layout_marginBottom="4dp"
+                                                   android:background="@drawable/glass_card"> <!-- replaced by GlassDrawable in MainAdapter -->
     <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp" app:srcCompat="@drawable/ic_sms_gray_24dp"
@@ -20,8 +25,9 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@+id/main_item_status"
             android:layout_marginStart="12dp" app:layout_constraintStart_toEndOf="@+id/main_item_image"
-            app:layout_constraintVertical_bias="0.0" android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="?android:attr/textColorPrimary" android:layout_marginTop="10dp"
+            app:layout_constraintVertical_bias="0.0" android:textAppearance="@style/TextAppearance.Home.ItemTitle"
+            android:fontFamily="@font/inter_semibold"
+            android:layout_marginTop="14dp"
             app:layout_constraintEnd_toStartOf="@id/main_item_connection_error_image"/>
     <TextView
             android:text="89 notifications, reconnecting ... This may wrap in the case of UnifiedPush"
@@ -29,7 +35,11 @@
             android:layout_height="wrap_content" android:id="@+id/main_item_status"
             app:layout_constraintStart_toStartOf="@+id/main_item_text"
             app:layout_constraintTop_toBottomOf="@+id/main_item_text" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="10dp" app:layout_constrainedWidth="true"
+            android:layout_marginTop="3dp"
+            android:textAppearance="@style/TextAppearance.Home.Mono.Caps"
+
+            android:fontFamily="@font/geist_mono"
+            android:layout_marginBottom="14dp" app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toStartOf="@id/main_item_new" android:layout_marginEnd="10dp"/>
     <ImageView
             android:layout_width="20dp"
@@ -63,6 +73,9 @@
             android:text="10:13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" android:id="@+id/main_item_date"
+            android:textAppearance="@style/TextAppearance.Home.Mono"
+
+            android:fontFamily="@font/geist_mono"
             app:layout_constraintTop_toTopOf="@+id/main_item_instant_image"
             app:layout_constraintEnd_toEndOf="parent"
             android:paddingTop="2dp"/>

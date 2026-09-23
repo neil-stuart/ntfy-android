@@ -1,5 +1,17 @@
 package io.heckel.ntfy.ui
 
+import androidx.activity.OnBackPressedCallback
+import android.graphics.Color
+import io.heckel.ntfy.ui.theme.ThemeManager
+import io.heckel.ntfy.ui.theme.HomeTheme
+import io.heckel.ntfy.ui.theme.GlassFooter
+import androidx.fragment.app.FragmentManager
+import androidx.core.view.isVisible
+import android.widget.TextView
+import android.widget.ArrayAdapter
+import android.view.ViewGroup
+import android.view.LayoutInflater
+import android.content.res.ColorStateList
 import android.Manifest
 import android.app.AlarmManager
 import android.content.ClipData
@@ -55,6 +67,7 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
     private lateinit var userSettingsFragment: UserSettingsFragment
     private lateinit var customHeaderSettingsFragment: CustomHeaderSettingsFragment
 
+    private lateinit var glassFooter: GlassFooter
     private lateinit var repository: Repository
     private lateinit var serviceManager: SubscriberServiceManager
 
@@ -107,6 +120,42 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
 
         // Show 'Back' button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        // Glass footer, shared with the topic list. On a fresh open it arrives still showing
+        // "Notifications" and slides its pill across to "Settings" as the page crossfades in.
+        glassFooter = GlassFooter.bind(
+            this,
+            findViewById(R.id.glass_footer),
+            if (savedInstanceState == null) GlassFooter.Tab.NOTIFICATIONS else GlassFooter.Tab.SETTINGS,
+        ).apply {
+            setOnTabClick(GlassFooter.Tab.NOTIFICATIONS) { leaveToTopics() }
+            setOnTabClick(GlassFooter.Tab.SETTINGS) {
+                supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            }
+            setOnAddClick {
+                setResult(RESULT_SUBSCRIBE)
+                leaveToTopics()
+            }
+        }
+        if (savedInstanceState == null) {
+            glassFooter.view.post { glassFooter.select(GlassFooter.Tab.SETTINGS) }
+        }
+
+        // Back from the settings root slides the pill home before the page returns
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (supportFragmentManager.backStackEntryCount > 0) {
+                    supportFragmentManager.popBackStack()
+                } else {
+                    leaveToTopics()
+                }
+            }
+        })
+    }
+
+    /** Slides the footer pill back to "Notifications", then returns to the topic list. */
+    private fun leaveToTopics() {
+        glassFooter.select(GlassFooter.Tab.NOTIFICATIONS) { supportFinishAfterTransition() }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -119,7 +168,8 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
         if (supportFragmentManager.popBackStackImmediate()) {
             return true
         }
-        return super.onSupportNavigateUp()
+        leaveToTopics()
+        return true
     }
 
     override fun onPreferenceStartFragment(
@@ -350,22 +400,45 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
                 }
             }
 
-            // Dark mode
+            // Colour theme (Hawksfield, Ocean, Pepper, Cherry, Tokyo Night)
+            val themePrefId = context?.getString(R.string.settings_appearance_theme_key) ?: return
+            val themePref: Preference? = findPreference(themePrefId)
+            val colourTheme = ThemeManager.current(requireContext())
+            if (repository.getDynamicColorsEnabled()) {
+                themePref?.isEnabled = false
+                themePref?.summary = getString(R.string.settings_appearance_theme_dynamic)
+            } else {
+                themePref?.summary = getString(colourTheme.label)
+            }
+            themePref?.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+                showThemePicker()
+                true
+            }
+
+            // Dark mode (a light-only or dark-only colour theme overrides it while selected)
             val darkModePrefId = context?.getString(R.string.settings_general_dark_mode_key) ?: return
             val darkMode: ListPreference? = findPreference(darkModePrefId)
             darkMode?.value = repository.getDarkMode().toString()
+            darkMode?.isEnabled = colourTheme.followsMode || repository.getDynamicColorsEnabled()
             darkMode?.preferenceDataStore = object : PreferenceDataStore() {
                 override fun putString(key: String?, value: String?) {
                     val darkModeValue = value?.toIntOrNull() ?: return
                     repository.setDarkMode(darkModeValue)
-                    AppCompatDelegate.setDefaultNightMode(darkModeValue)
-
+                    ThemeManager.applyNightMode(requireContext())
                 }
                 override fun getString(key: String?, defValue: String?): String {
                     return repository.getDarkMode().toString()
                 }
             }
             darkMode?.summaryProvider = Preference.SummaryProvider<ListPreference> { pref ->
+                if (darkMode?.isEnabled == false) {
+                    val name = getString(colourTheme.label)
+                    return@SummaryProvider if (colourTheme.forceDark) {
+                        getString(R.string.settings_appearance_theme_dark_only, name)
+                    } else {
+                        getString(R.string.settings_appearance_theme_light_only, name)
+                    }
+                }
                 val darkModeValue = pref.value.toIntOrNull() ?: repository.getDarkMode()
                 when (darkModeValue) {
                     AppCompatDelegate.MODE_NIGHT_NO -> getString(R.string.settings_general_dark_mode_summary_light)
@@ -699,7 +772,7 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
                                 act.recreate()
                                 val newDarkMode = repository.getDarkMode()
                                 if (newDarkMode != currentDarkMode) {
-                                    AppCompatDelegate.setDefaultNightMode(newDarkMode)
+                                    ThemeManager.applyNightMode(act)
                                 }
                             }
                         }
@@ -916,6 +989,42 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
 
         @Keep
         data class NopasteResponse(val url: String)
+
+        /** Nocean-style theme menu: swatch dot, name, light/dark-only note, check on the current one. */
+        private fun showThemePicker() {
+            val context = requireContext()
+            val current = ThemeManager.current(context)
+            val themes = HomeTheme.entries
+            val adapter = object : ArrayAdapter<HomeTheme>(context, R.layout.item_theme_option, themes) {
+                override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                    val view = convertView ?: LayoutInflater.from(context).inflate(R.layout.item_theme_option, parent, false)
+                    val theme = themes[position]
+                    view.findViewById<View>(R.id.theme_option_swatch).backgroundTintList = ColorStateList.valueOf(theme.swatch)
+                    view.findViewById<TextView>(R.id.theme_option_name).setText(theme.label)
+                    val mode = view.findViewById<TextView>(R.id.theme_option_mode)
+                    mode.isVisible = !theme.followsMode
+                    mode.setText(if (theme.forceDark) R.string.theme_dark_only else R.string.theme_light_only)
+                    view.findViewById<View>(R.id.theme_option_check).visibility = if (theme == current) View.VISIBLE else View.INVISIBLE
+                    return view
+                }
+            }
+            MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.settings_appearance_theme_title)
+                .setAdapter(adapter) { dialog, which ->
+                    dialog.dismiss()
+                    val theme = themes[which]
+                    if (theme == current) return@setAdapter
+                    val nightModeBefore = AppCompatDelegate.getDefaultNightMode()
+                    ThemeManager.select(context, theme)
+                    // A night-mode change already recreates every activity; otherwise redraw this one now
+                    // (the rest recreate when resumed, see ThemeManager)
+                    if (AppCompatDelegate.getDefaultNightMode() == nightModeBefore) {
+                        requireActivity().recreate()
+                    }
+                }
+                .show()
+                .listView?.setBackgroundColor(Color.TRANSPARENT) // Let the glass dialog show through
+        }
     }
 
     class UserSettingsFragment : BasePreferenceFragment() {
@@ -1159,6 +1268,8 @@ class SettingsActivity : AppCompatActivity(), PreferenceFragmentCompat.OnPrefere
     }
 
     companion object {
+        /** Returned when the footer's "+" is tapped, so the topic list opens its subscribe dialog. */
+        const val RESULT_SUBSCRIBE = RESULT_FIRST_USER + 1
         private const val TAG = "NtfySettingsActivity"
         private const val TITLE_TAG = "title"
         private const val REQUEST_CODE_WRITE_EXTERNAL_STORAGE_PERMISSION_FOR_AUTO_DOWNLOAD = 2586

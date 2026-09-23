@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Colour theme picker row (after Nocean's theme menu): swatch dot, name, mode note, check. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp">
+
+    <View
+        android:id="@+id/theme_option_swatch"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:background="@drawable/ic_circle" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/theme_option_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Home.ItemTitle"
+
+            android:fontFamily="@font/inter_semibold" />
+
+        <TextView
+            android:id="@+id/theme_option_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Home.Mono.Caps"
+
+            android:fontFamily="@font/geist_mono" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/theme_option_check"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:importantForAccessibility="no"
+        app:srcCompat="@drawable/ic_check_24dp"
+        app:tint="?attr/colorPrimary" />
+</LinearLayout>

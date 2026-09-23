@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Adaptive launcher foreground: a glowing outline bell in the hawksfield-dashboard icon style
+     (white single-weight stroke on the dark tile). The SVG glow is approximated with wide, faint
+     strokes beneath the main stroke. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group android:scaleX="1.85" android:scaleY="1.85" android:translateX="31.8" android:translateY="31.8">
+        <path android:pathData="M6,8A6,6 0,0 1,18,8C18,15 21,17 21,17H3C3,17 6,15 6,8Z M10.3,21A1.94,1.94 0,0 0,13.7,21" android:strokeColor="#0DFFFFFF" android:strokeWidth="4.4"
+            android:strokeLineCap="round" android:strokeLineJoin="round" />
+        <path android:pathData="M6,8A6,6 0,0 1,18,8C18,15 21,17 21,17H3C3,17 6,15 6,8Z M10.3,21A1.94,1.94 0,0 0,13.7,21" android:strokeColor="#14FFFFFF" android:strokeWidth="3.6"
+            android:strokeLineCap="round" android:strokeLineJoin="round" />
+        <path android:pathData="M6,8A6,6 0,0 1,18,8C18,15 21,17 21,17H3C3,17 6,15 6,8Z M10.3,21A1.94,1.94 0,0 0,13.7,21" android:strokeColor="#1FFFFFFF" android:strokeWidth="2.9"
+            android:strokeLineCap="round" android:strokeLineJoin="round" />
+        <path android:pathData="M6,8A6,6 0,0 1,18,8C18,15 21,17 21,17H3C3,17 6,15 6,8Z M10.3,21A1.94,1.94 0,0 0,13.7,21" android:strokeColor="#33FFFFFF" android:strokeWidth="2.4"
+            android:strokeLineCap="round" android:strokeLineJoin="round" />
+        <path android:pathData="M6,8A6,6 0,0 1,18,8C18,15 21,17 21,17H3C3,17 6,15 6,8Z M10.3,21A1.94,1.94 0,0 0,13.7,21" android:strokeColor="#FFFFFFFF" android:strokeWidth="1.98"
+            android:strokeLineCap="round" android:strokeLineJoin="round" />
+    </group>
+</vector>
