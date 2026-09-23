@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Colour theme overlays, applied on top of AppTheme by ThemeManager. -->
+<resources>
+    <style name="ThemeOverlay.Home.Hawksfield" parent="">
+        <item name="colorPrimary">@color/pal_hawksfield_colorPrimary</item>
+        <item name="colorOnPrimary">@color/pal_hawksfield_colorOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/pal_hawksfield_colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/pal_hawksfield_colorOnPrimaryContainer</item>
+        <item name="colorSecondary">@color/pal_hawksfield_colorSecondary</item>
+        <item name="colorOnSecondary">@color/pal_hawksfield_colorOnSecondary</item>
+        <item name="colorSecondaryContainer">@color/pal_hawksfield_colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/pal_hawksfield_colorOnSecondaryContainer</item>
+        <item name="colorTertiary">@color/pal_hawksfield_colorTertiary</item>
+        <item name="colorError">@color/pal_hawksfield_colorError</item>
+        <item name="android:colorBackground">@color/pal_hawksfield_background</item>
+        <item name="colorOnBackground">@color/pal_hawksfield_colorOnBackground</item>
+        <item name="colorSurface">@color/pal_hawksfield_colorSurface</item>
+        <item name="colorOnSurface">@color/pal_hawksfield_colorOnSurface</item>
+        <item name="colorSurfaceVariant">@color/pal_hawksfield_colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/pal_hawksfield_colorOnSurfaceVariant</item>
+        <item name="colorOutline">@color/pal_hawksfield_colorOutline</item>
+        <item name="colorOutlineVariant">@color/pal_hawksfield_colorOutlineVariant</item>
+        <item name="colorSurfaceContainerLowest">@color/pal_hawksfield_colorSurfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/pal_hawksfield_colorSurfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/pal_hawksfield_colorSurfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/pal_hawksfield_colorSurfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/pal_hawksfield_colorSurfaceContainerHighest</item>
+        <item name="glassBase">@color/pal_hawksfield_glassBase</item>
+        <item name="glassBar">@color/pal_hawksfield_glassBar</item>
+        <item name="glassPane">@color/pal_hawksfield_glassPane</item>
+        <item name="glassPaneSelected">@color/pal_hawksfield_glassPaneSelected</item>
+        <item name="glassDialog">@color/pal_hawksfield_glassDialog</item>
+        <item name="glassBorderTop">@color/pal_hawksfield_glassBorderTop</item>
+        <item name="glassBorderBottom">@color/pal_hawksfield_glassBorderBottom</item>
+        <item name="glassBlob1">@color/pal_hawksfield_glassBlob1</item>
+        <item name="glassBlob2">@color/pal_hawksfield_glassBlob2</item>
+        <item name="glassBlob3">@color/pal_hawksfield_glassBlob3</item>
+    </style>
+
+    <style name="ThemeOverlay.Home.Ocean" parent="">
+        <item name="colorPrimary">@color/pal_ocean_colorPrimary</item>
+        <item name="colorOnPrimary">@color/pal_ocean_colorOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/pal_ocean_colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/pal_ocean_colorOnPrimaryContainer</item>
+        <item name="colorSecondary">@color/pal_ocean_colorSecondary</item>
+        <item name="colorOnSecondary">@color/pal_ocean_colorOnSecondary</item>
+        <item name="colorSecondaryContainer">@color/pal_ocean_colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/pal_ocean_colorOnSecondaryContainer</item>
+        <item name="colorTertiary">@color/pal_ocean_colorTertiary</item>
+        <item name="colorError">@color/pal_ocean_colorError</item>
+        <item name="android:colorBackground">@color/pal_ocean_background</item>
+        <item name="colorOnBackground">@color/pal_ocean_colorOnBackground</item>
+        <item name="colorSurface">@color/pal_ocean_colorSurface</item>
+        <item name="colorOnSurface">@color/pal_ocean_colorOnSurface</item>
+        <item name="colorSurfaceVariant">@color/pal_ocean_colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/pal_ocean_colorOnSurfaceVariant</item>
+        <item name="colorOutline">@color/pal_ocean_colorOutline</item>
+        <item name="colorOutlineVariant">@color/pal_ocean_colorOutlineVariant</item>
+        <item name="colorSurfaceContainerLowest">@color/pal_ocean_colorSurfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/pal_ocean_colorSurfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/pal_ocean_colorSurfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/pal_ocean_colorSurfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/pal_ocean_colorSurfaceContainerHighest</item>
+        <item name="glassBase">@color/pal_ocean_glassBase</item>
+        <item name="glassBar">@color/pal_ocean_glassBar</item>
+        <item name="glassPane">@color/pal_ocean_glassPane</item>
+        <item name="glassPaneSelected">@color/pal_ocean_glassPaneSelected</item>
+        <item name="glassDialog">@color/pal_ocean_glassDialog</item>
+        <item name="glassBorderTop">@color/pal_ocean_glassBorderTop</item>
+        <item name="glassBorderBottom">@color/pal_ocean_glassBorderBottom</item>
+        <item name="glassBlob1">@color/pal_ocean_glassBlob1</item>
+        <item name="glassBlob2">@color/pal_ocean_glassBlob2</item>
+        <item name="glassBlob3">@color/pal_ocean_glassBlob3</item>
+    </style>
+
+    <style name="ThemeOverlay.Home.Pepper" parent="">
+        <item name="colorPrimary">@color/pal_pepper_colorPrimary</item>
+        <item name="colorOnPrimary">@color/pal_pepper_colorOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/pal_pepper_colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/pal_pepper_colorOnPrimaryContainer</item>
+        <item name="colorSecondary">@color/pal_pepper_colorSecondary</item>
+        <item name="colorOnSecondary">@color/pal_pepper_colorOnSecondary</item>
+        <item name="colorSecondaryContainer">@color/pal_pepper_colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/pal_pepper_colorOnSecondaryContainer</item>
+        <item name="colorTertiary">@color/pal_pepper_colorTertiary</item>
+        <item name="colorError">@color/pal_pepper_colorError</item>
+        <item name="android:colorBackground">@color/pal_pepper_background</item>
+        <item name="colorOnBackground">@color/pal_pepper_colorOnBackground</item>
+        <item name="colorSurface">@color/pal_pepper_colorSurface</item>
+        <item name="colorOnSurface">@color/pal_pepper_colorOnSurface</item>
+        <item name="colorSurfaceVariant">@color/pal_pepper_colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/pal_pepper_colorOnSurfaceVariant</item>
+        <item name="colorOutline">@color/pal_pepper_colorOutline</item>
+        <item name="colorOutlineVariant">@color/pal_pepper_colorOutlineVariant</item>
+        <item name="colorSurfaceContainerLowest">@color/pal_pepper_colorSurfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/pal_pepper_colorSurfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/pal_pepper_colorSurfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/pal_pepper_colorSurfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/pal_pepper_colorSurfaceContainerHighest</item>
+        <item name="glassBase">@color/pal_pepper_glassBase</item>
+        <item name="glassBar">@color/pal_pepper_glassBar</item>
+        <item name="glassPane">@color/pal_pepper_glassPane</item>
+        <item name="glassPaneSelected">@color/pal_pepper_glassPaneSelected</item>
+        <item name="glassDialog">@color/pal_pepper_glassDialog</item>
+        <item name="glassBorderTop">@color/pal_pepper_glassBorderTop</item>
+        <item name="glassBorderBottom">@color/pal_pepper_glassBorderBottom</item>
+        <item name="glassBlob1">@color/pal_pepper_glassBlob1</item>
+        <item name="glassBlob2">@color/pal_pepper_glassBlob2</item>
+        <item name="glassBlob3">@color/pal_pepper_glassBlob3</item>
+    </style>
+
+    <style name="ThemeOverlay.Home.Cherry" parent="">
+        <item name="colorPrimary">@color/pal_cherry_colorPrimary</item>
+        <item name="colorOnPrimary">@color/pal_cherry_colorOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/pal_cherry_colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/pal_cherry_colorOnPrimaryContainer</item>
+        <item name="colorSecondary">@color/pal_cherry_colorSecondary</item>
+        <item name="colorOnSecondary">@color/pal_cherry_colorOnSecondary</item>
+        <item name="colorSecondaryContainer">@color/pal_cherry_colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/pal_cherry_colorOnSecondaryContainer</item>
+        <item name="colorTertiary">@color/pal_cherry_colorTertiary</item>
+        <item name="colorError">@color/pal_cherry_colorError</item>
+        <item name="android:colorBackground">@color/pal_cherry_background</item>
+        <item name="colorOnBackground">@color/pal_cherry_colorOnBackground</item>
+        <item name="colorSurface">@color/pal_cherry_colorSurface</item>
+        <item name="colorOnSurface">@color/pal_cherry_colorOnSurface</item>
+        <item name="colorSurfaceVariant">@color/pal_cherry_colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/pal_cherry_colorOnSurfaceVariant</item>
+        <item name="colorOutline">@color/pal_cherry_colorOutline</item>
+        <item name="colorOutlineVariant">@color/pal_cherry_colorOutlineVariant</item>
+        <item name="colorSurfaceContainerLowest">@color/pal_cherry_colorSurfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/pal_cherry_colorSurfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/pal_cherry_colorSurfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/pal_cherry_colorSurfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/pal_cherry_colorSurfaceContainerHighest</item>
+        <item name="glassBase">@color/pal_cherry_glassBase</item>
+        <item name="glassBar">@color/pal_cherry_glassBar</item>
+        <item name="glassPane">@color/pal_cherry_glassPane</item>
+        <item name="glassPaneSelected">@color/pal_cherry_glassPaneSelected</item>
+        <item name="glassDialog">@color/pal_cherry_glassDialog</item>
+        <item name="glassBorderTop">@color/pal_cherry_glassBorderTop</item>
+        <item name="glassBorderBottom">@color/pal_cherry_glassBorderBottom</item>
+        <item name="glassBlob1">@color/pal_cherry_glassBlob1</item>
+        <item name="glassBlob2">@color/pal_cherry_glassBlob2</item>
+        <item name="glassBlob3">@color/pal_cherry_glassBlob3</item>
+    </style>
+
+    <style name="ThemeOverlay.Home.Tokyo" parent="">
+        <item name="colorPrimary">@color/pal_tokyo_colorPrimary</item>
+        <item name="colorOnPrimary">@color/pal_tokyo_colorOnPrimary</item>
+        <item name="colorPrimaryContainer">@color/pal_tokyo_colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/pal_tokyo_colorOnPrimaryContainer</item>
+        <item name="colorSecondary">@color/pal_tokyo_colorSecondary</item>
+        <item name="colorOnSecondary">@color/pal_tokyo_colorOnSecondary</item>
+        <item name="colorSecondaryContainer">@color/pal_tokyo_colorSecondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/pal_tokyo_colorOnSecondaryContainer</item>
+        <item name="colorTertiary">@color/pal_tokyo_colorTertiary</item>
+        <item name="colorError">@color/pal_tokyo_colorError</item>
+        <item name="android:colorBackground">@color/pal_tokyo_background</item>
+        <item name="colorOnBackground">@color/pal_tokyo_colorOnBackground</item>
+        <item name="colorSurface">@color/pal_tokyo_colorSurface</item>
+        <item name="colorOnSurface">@color/pal_tokyo_colorOnSurface</item>
+        <item name="colorSurfaceVariant">@color/pal_tokyo_colorSurfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/pal_tokyo_colorOnSurfaceVariant</item>
+        <item name="colorOutline">@color/pal_tokyo_colorOutline</item>
+        <item name="colorOutlineVariant">@color/pal_tokyo_colorOutlineVariant</item>
+        <item name="colorSurfaceContainerLowest">@color/pal_tokyo_colorSurfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/pal_tokyo_colorSurfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/pal_tokyo_colorSurfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/pal_tokyo_colorSurfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/pal_tokyo_colorSurfaceContainerHighest</item>
+        <item name="glassBase">@color/pal_tokyo_glassBase</item>
+        <item name="glassBar">@color/pal_tokyo_glassBar</item>
+        <item name="glassPane">@color/pal_tokyo_glassPane</item>
+        <item name="glassPaneSelected">@color/pal_tokyo_glassPaneSelected</item>
+        <item name="glassDialog">@color/pal_tokyo_glassDialog</item>
+        <item name="glassBorderTop">@color/pal_tokyo_glassBorderTop</item>
+        <item name="glassBorderBottom">@color/pal_tokyo_glassBorderBottom</item>
+        <item name="glassBlob1">@color/pal_tokyo_glassBlob1</item>
+        <item name="glassBlob2">@color/pal_tokyo_glassBlob2</item>
+        <item name="glassBlob3">@color/pal_tokyo_glassBlob3</item>
+    </style>
+
+</resources>

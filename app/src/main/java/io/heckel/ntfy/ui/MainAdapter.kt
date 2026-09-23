@@ -1,7 +1,6 @@
 package io.heckel.ntfy.ui
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +15,7 @@ import io.heckel.ntfy.R
 import io.heckel.ntfy.db.ConnectionState
 import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.db.Subscription
+import io.heckel.ntfy.ui.theme.GlassDrawable
 import io.heckel.ntfy.util.displayName
 import io.heckel.ntfy.util.readBitmapFromUriOrNull
 import java.text.DateFormat
@@ -135,11 +135,10 @@ class MainAdapter(
             }
             itemView.setOnClickListener { onClick(subscription) }
             itemView.setOnLongClickListener { onLongClick(subscription); true }
-            if (selected.contains(subscription.id)) {
-                itemView.setBackgroundColor(Colors.itemSelectedBackground(context))
-            } else {
-                itemView.setBackgroundColor(Color.TRANSPARENT)
-            }
+            // Frosted pane with a rim that fades top to bottom; keep the ripple inside its rounded outline
+            val paneColor = if (selected.contains(subscription.id)) Colors.cardSelectedBackgroundColor(context) else Colors.cardBackgroundColor(context)
+            itemView.background = GlassDrawable(context, context.resources.getDimension(R.dimen.glass_corner), paneColor)
+            itemView.clipToOutline = true
         }
     }
 

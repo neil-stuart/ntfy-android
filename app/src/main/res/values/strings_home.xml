@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home Notifications additions (glass footer, colour themes). -->
+<resources>
+    <string name="footer_notifications">Notifications</string>
+    <string name="footer_settings">Settings</string>
+
+    <plurals name="main_subtitle_topics">
+        <item quantity="one">%d topic</item>
+        <item quantity="other">%d topics</item>
+    </plurals>
+
+    <string name="settings_appearance_theme_title">Colour theme</string>
+    <string name="settings_appearance_theme_dynamic">Using wallpaper colours. Turn off dynamic colours to pick a theme.</string>
+    <string name="settings_appearance_theme_light_only">%1$s is a light-only theme</string>
+    <string name="settings_appearance_theme_dark_only">%1$s is a dark-only theme</string>
+
+    <string name="theme_hawksfield">Hawksfield</string>
+    <string name="theme_ocean">Ocean</string>
+    <string name="theme_pepper">Pepper</string>
+    <string name="theme_cherry">Cherry</string>
+    <string name="theme_tokyo">Tokyo Night</string>
+    <string name="theme_light_only">Light only</string>
+    <string name="theme_dark_only">Dark only</string>
+</resources>

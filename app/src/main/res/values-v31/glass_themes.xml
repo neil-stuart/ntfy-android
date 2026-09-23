@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 12+: real frosted glass. The screen behind a dialog is blurred
+         by the compositor and seen through the translucent dialog pane. -->
+    <style name="ThemeOverlay.Hawksfield.GlassDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="alertDialogStyle">@style/Hawksfield.GlassDialog</item>
+        <item name="android:backgroundDimAmount">0.18</item>
+        <item name="android:windowBlurBehindEnabled">true</item>
+        <item name="android:windowBlurBehindRadius">@dimen/glass_blur_radius</item>
+    </style>
+</resources>

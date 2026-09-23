@@ -64,7 +64,6 @@ import androidx.core.net.toUri
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import android.widget.ImageButton
-import com.google.android.material.color.MaterialColors
 
 class DetailActivity : AppCompatActivity(), NotificationFragment.NotificationSettingsListener, PublishFragment.PublishListener {
     private val viewModel by viewModels<DetailViewModel> {
@@ -167,21 +166,7 @@ class DetailActivity : AppCompatActivity(), NotificationFragment.NotificationSet
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars =
             Colors.shouldUseLightStatusBar(dynamicColors, darkMode)
 
-        // Set detail activity background: use theme background for dynamic colors, static gray for non-dynamic
-        val detailContentLayout = findViewById<View>(R.id.detail_content_layout)
-        if (repository.getDynamicColorsEnabled()) {
-            detailContentLayout.setBackgroundColor(
-                MaterialColors.getColor(
-                    this,
-                    android.R.attr.colorBackground,
-                    ContextCompat.getColor(this, R.color.detail_activity_background)
-                )
-            )
-        } else {
-            detailContentLayout.setBackgroundColor(
-                ContextCompat.getColor(this, R.color.detail_activity_background)
-            )
-        }
+        // Detail content stays transparent so the glass backdrop shows through (see activity_detail.xml)
 
         // Show 'Back' button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

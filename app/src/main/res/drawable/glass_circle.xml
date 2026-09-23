@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Round glass icon button (Nocean GlassIconButton): a fixed 40dp circle centred in the button,
+     so it never stretches with the toolbar's height or the button's width. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:width="40dp" android:height="40dp" android:gravity="center">
+        <ripple android:color="?attr/colorControlHighlight">
+            <item>
+                <shape android:shape="oval">
+                    <solid android:color="?attr/glassPane" />
+                    <stroke android:width="@dimen/glass_stroke_width" android:color="?attr/glassBorderTop" />
+                </shape>
+            </item>
+        </ripple>
+    </item>
+</layer-list>

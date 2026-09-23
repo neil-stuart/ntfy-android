@@ -24,7 +24,8 @@ abstract class BasePreferenceFragment : PreferenceFragmentCompat() {
             recyclerView.clipToPadding = false
             ViewCompat.setOnApplyWindowInsetsListener(recyclerView) { v, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-                v.updatePadding(bottom = systemBars.bottom)
+                val footerClearance = resources.getDimensionPixelSize(R.dimen.glass_footer_clearance)
+                v.updatePadding(bottom = systemBars.bottom + footerClearance) // Scroll clear of the glass footer
                 insets
             }
         }

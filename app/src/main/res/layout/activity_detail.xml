@@ -18,7 +18,7 @@
         android:id="@+id/detail_content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/detail_activity_background"
+        android:background="@android:color/transparent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

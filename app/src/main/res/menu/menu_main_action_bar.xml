@@ -24,7 +24,8 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/main_menu_settings"
-        android:title="@string/main_menu_settings_title" />
+        android:title="@string/main_menu_settings_title"
+        android:visible="false" /> <!-- Moved to the glass footer -->
     <item
         android:id="@+id/main_menu_docs"
         android:title="@string/main_menu_docs_title" />

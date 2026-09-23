@@ -6,6 +6,7 @@ import android.net.Network
 import com.google.android.material.color.DynamicColors
 import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.service.SubscriberServiceManager
+import io.heckel.ntfy.ui.theme.ThemeManager
 import io.heckel.ntfy.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +29,7 @@ class Application : Application() {
         if (repository.getDynamicColorsEnabled()) {
             DynamicColors.applyToActivitiesIfAvailable(this)
         }
+        ThemeManager.install(this) // Colour theme overlays, aurora backdrop, light/dark-only themes
         registerNetworkCallback()
     }
 

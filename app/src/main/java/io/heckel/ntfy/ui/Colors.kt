@@ -2,10 +2,8 @@ package io.heckel.ntfy.ui
 
 import android.content.Context
 import android.graphics.Color
-import androidx.core.content.ContextCompat
 import com.google.android.material.color.MaterialColors
 import io.heckel.ntfy.R
-import io.heckel.ntfy.util.isDarkThemeOn
 
 class Colors {
     companion object {
@@ -26,53 +24,31 @@ class Colors {
         }
 
         fun itemSelectedBackground(context: Context): Int {
-            return ContextCompat.getColor(context, R.color.md_theme_surfaceContainerHigh)
+            return MaterialColors.getColor(context, R.attr.glassPaneSelected, Color.GRAY)
         }
 
+        // Frosted glass panes (colours from the active theme, see res/values/glass_attrs.xml): translucent over the aurora backdrop
         fun cardBackgroundColor(context: Context): Int {
-            return if (isDarkThemeOn(context)) {
-                MaterialColors.getColor(context, R.attr.colorSurfaceContainer, Color.GRAY)
-            } else {
-                MaterialColors.getColor(context, R.attr.colorSurface, Color.WHITE)
-            }
+            return MaterialColors.getColor(context, R.attr.glassPane, Color.WHITE)
         }
 
         fun cardSelectedBackgroundColor(context: Context): Int {
-            return if (isDarkThemeOn(context)) {
-                MaterialColors.getColor(context, R.attr.colorSurfaceContainerHigh, Color.GRAY)
-            } else {
-                MaterialColors.getColor(context, R.attr.colorSurfaceContainerHighest, Color.GRAY)
-            }
+            return MaterialColors.getColor(context, R.attr.glassPaneSelected, Color.GRAY)
         }
 
         fun statusBarNormal(context: Context, dynamicColors: Boolean, darkMode: Boolean): Int {
-            val default = context.resources.getColor(R.color.action_bar, null)
-            return if (dynamicColors) {
-                // Use colorSurface for both light and dark mode when dynamic colors are enabled
-                MaterialColors.getColor(context, R.attr.colorSurface, default)
-            } else {
-                default
-            }
+            // Translucent glass bar in all modes; the aurora backdrop tints through it
+            return MaterialColors.getColor(context, R.attr.glassBar, Color.WHITE)
         }
 
         fun shouldUseLightStatusBar(dynamicColors: Boolean, darkMode: Boolean): Boolean {
-            // Use light status bar (dark icons) when dynamic colors are enabled in light mode
-            return dynamicColors && !darkMode
+            // Glass bar is light in light mode, so use dark status bar icons there
+            return !darkMode
         }
 
         fun toolbarTextColor(context: Context, dynamicColors: Boolean, darkMode: Boolean): Int {
-            return if (dynamicColors) {
-                // Use colorOnSurface (dark on light, light on dark) when dynamic colors are enabled
-                MaterialColors.getColor(context, R.attr.colorOnSurface, Color.BLACK)
-            } else {
-                if (darkMode) {
-                    // In dark mode, toolbar is gray (surfaceContainer), so use light text
-                    MaterialColors.getColor(context, R.attr.colorOnSurface, Color.WHITE)
-                } else {
-                    // In light mode, toolbar is teal (primary), so use white text
-                    MaterialColors.getColor(context, R.attr.colorOnPrimary, Color.WHITE)
-                }
-            }
+            // Glass bar follows the surface, so text is ink-on-light / white-on-dark
+            return MaterialColors.getColor(context, R.attr.colorOnSurface, if (darkMode) Color.WHITE else Color.BLACK)
         }
 
         fun dangerText(context: Context): Int {

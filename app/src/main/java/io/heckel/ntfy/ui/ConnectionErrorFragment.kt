@@ -17,6 +17,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.textfield.TextInputLayout
 import io.heckel.ntfy.R
+import io.heckel.ntfy.ui.theme.AuroraDrawable
 import io.heckel.ntfy.db.ConnectionDetails
 import io.heckel.ntfy.db.Repository
 import io.heckel.ntfy.service.SubscriberServiceManager
@@ -153,6 +154,7 @@ class ConnectionErrorFragment : DialogFragment() {
 
         // Build dialog
         val dialog = Dialog(requireContext(), R.style.Theme_App_FullScreenDialog)
+        dialog.window?.setBackgroundDrawable(AuroraDrawable(dialog.context)) // Same glass backdrop as the app
         dialog.setContentView(view)
 
         return dialog

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Floating glass footer: Notifications · + · Settings. Wired up by ui/theme/GlassFooter.kt. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/glass_footer"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <!-- Real backdrop blur on Android 12+; hidden on older versions, which get a denser tint -->
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/glass_footer_blur"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- match_parent so FrameLayout re-measures both children and the blur fills the footer.
+         The row draws the sliding active-tab pill itself. -->
+    <io.heckel.ntfy.ui.theme.GlassFooterRow
+        android:id="@+id/glass_footer_row"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="6dp">
+
+        <LinearLayout
+            android:id="@+id/glass_footer_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:id="@+id/glass_footer_notifications_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/ic_bell_outline_24dp" />
+
+            <TextView
+                android:id="@+id/glass_footer_notifications_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/footer_notifications"
+                android:textAppearance="@style/TextAppearance.Home.FooterLabel"
+
+                android:fontFamily="@font/inter_semibold" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/glass_footer_add"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/footer_add"
+            android:contentDescription="@string/main_add_button_description"
+            app:srcCompat="@drawable/ic_add_black_24dp"
+            app:tint="?attr/colorOnPrimary" />
+
+        <LinearLayout
+            android:id="@+id/glass_footer_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingEnd="16dp">
+
+            <ImageView
+                android:id="@+id/glass_footer_settings_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:importantForAccessibility="no"
+                app:srcCompat="@drawable/ic_settings_24dp" />
+
+            <TextView
+                android:id="@+id/glass_footer_settings_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/footer_settings"
+                android:textAppearance="@style/TextAppearance.Home.FooterLabel"
+
+                android:fontFamily="@font/inter_semibold" />
+        </LinearLayout>
+    </io.heckel.ntfy.ui.theme.GlassFooterRow>
+</FrameLayout>
